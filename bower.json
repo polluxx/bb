@@ -1,0 +1,10 @@
+{
+  "name": "sape",
+  "version": "0.0.0",
+  "devDependencies": {
+      "bazalt": "*",
+      "bootstrap": "~3.0.0",
+      "requirejs": "*"
+  }
+}
+
