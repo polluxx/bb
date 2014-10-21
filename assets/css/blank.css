@@ -41,7 +41,7 @@
 }
 
 .admin-block.passive:hover {
-    opacity: 0.8;
+    opacity: 0.3;
     width: 70px;
     cursor: pointer;
 }

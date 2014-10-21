@@ -22,7 +22,7 @@ define([
 		$scope.item.type = 1;
 		
         $scope.add = function(item) {
-			if(item.name == undefined) {
+			if(item.name == undefined || item.name == "") {
 				alert('Set user name!');
 				return;
 			}

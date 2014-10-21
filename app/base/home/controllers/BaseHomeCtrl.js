@@ -6,12 +6,15 @@ define(['base/home/module'], function (module) {
         return {
             restrict:"A",
             link: function(scope, element, attrs) {
+			var interval, map = angular.element(document.getElementById("map"));
                 element.bind("click", function() {
                     element.removeClass("passive");
+					map.addClass("disabled");
                 })
-
+				
                 element.on("mouseleave", function() {
-                    element.addClass("passive");
+					element.addClass("passive");   
+					map.removeClass("disabled");				
                 })
             }
         }

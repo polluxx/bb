@@ -14,9 +14,9 @@
 
 <div class="container">
 
-    <div class="row main disabled">
-        <div class="col" app-view-segment="0">
-
+    <div class="row">
+        <div class="col main" id="map" app-view-segment="0">
+			
         </div>
 
         <div class="col col-lg-4 ng-cloak admin-block passive" admin-block>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="form-group ">
                     <!--label for="nameB">Name:</label-->
-                    <input placeholder="Name" messag="true" id="nameB" name="typename" class="form-control input" type="text" ng-model="block.name"/>
+                    <input placeholder="Name" messag="true" id="nameB" name="typename" class="form-control input" type="text" ng-model="block.typename"/>
                 </div>
 				<div class="form-group ">
                     <!--label for="files">Images:</label-->
@@ -51,7 +51,7 @@
                 </div>
 				<div class="form-group " ng-show="files">
                     <!--label for="states">States:</label-->
-                    <div ng-repeat="file in files" class="box" style="padding: 10px 0;">
+                    <div ng-repeat="file in files" ng-if="!file.error" class="box" style="padding: 10px 0;">
 						<preloading class="preloaded" data='file'></preloading>
 						<input ng-if="!file.error" id="state-{{file.fakename}}" class="form-control input uploaded" type="text" ng-model="file.fakename"/>
 					</div>
