@@ -5,28 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/"/>
 
-    <link href="/assets/css/theme.css" rel="stylesheet" media="all">
+    <link href="/assets/css/bootstrap.css" rel="stylesheet" media="all">
+    <!--link href="/assets/css/bootstrap-theme.css" rel="stylesheet" media="all"-->
 </head>
 <body>
 
 
 <div class="container">
-
-    <nav class="navbar navbar-inverse" role="navigation">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#!/">Bazalt CMS</a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav pull-right">
-                <li ng-class="{'active': $language.id() == 'uk'}"><a href="" ng-click="$language.id('uk')">UK</a></li>
-                <li ng-class="{'active': $language.id() == 'en'}"><a href="" ng-click="$language.id('en')">EN</a></li>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li><a href="#!/testpage">Test page</a></li>
-            </ul>
-        </div>
-    </nav>
 
     <div class="row">
         <div class="col col-lg-9" app-view-segment="0">
@@ -34,30 +19,54 @@
         </div>
 
         <div class="col col-lg-3 ng-cloak">
-            {{'Test'|translate}}
-            <form ng-if="$user.is_guest" ng-controller="loginCtrl" ng-submit="login(user)" ng-init="user = { 'email': 'admin', 'password': '1' }">
+			<h3>Item</h3>
+			<form ng-controller="AddItemCtrl" ng-submit="add(item)">
                 <div class="form-group">
-                    <label for="email">Login / Email:</label>
-                    <input id="email" class="form-control" type="text" ng-model="user.email"/>
+                    <label for="type">Type:</label>
+                    <select id="type" class="form-control" ng-options="type.id as type.name for type in types" ng-model="item.type"></select>
                 </div>
                 <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input id="password" class="form-control" type="password" ng-model="user.password"/>
+                    <label for="name">Name:</label>
+                    <input id="name" class="form-control" type="text" ng-model="item.name"/>
                 </div>
                 <div class="form-group">
-                    <input class="btn btn-primary" type="submit" value="Login" />
+                    <button  class="btn btn-default" type="submit">Add</button>
                 </div>
             </form>
-            <div ng-if="!$user.is_guest">
-                ID: {{ $user.id }}
-                <a href="" data-ng-click="$user.$logout()">Log out</a>
-            </div>
+			
+			<br/>
+			<h3>Type</h3>
+			<form ng-controller="AddBlockCtrl" ng-submit="add(block)" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="typeB">Type:</label>
+                    <select id="typeB" class="form-control" ng-options="type.id as type.name for type in types" ng-model="block.type"></select>
+                </div>
+                <div class="form-group">
+                    <label for="nameB">Name:</label>
+                    <input messag="true" id="nameB" name="typename" class="form-control" type="text" ng-model="block.name"/>
+                </div>
+				<div class="form-group">
+                    <label for="files">Images:</label>
+                    <input messag="true" id="files" class="form-control" type="file" multiple="multiple" name="files[]" file-input="files"/>
+                </div>
+				<div class="form-group" ng-show="files">
+                    <label for="states">States:</label>
+                    <div ng-repeat="file in files">
+						<preloading data='file'></preloading>
+						<input ng-if="!file.error" id="state-{{file.fakename}}" class="form-control" type="text" ng-model="file.fakename"/>
+					</div>
+                </div>
+				<div id="filesInfo"></div>
+                <div class="form-group">
+                    <button class="btn btn-default" type="submit">Add</button>
+                </div>
+            </form>
 
         </div>
     </div>
 </div>
 
 <script src="/bazalt.js"></script>
-<script src="/bower_components/requirejs/require.js" data-main="config"></script>
+<script src="/bower_components/requirejs/require.js" data-main="app/requireConfig"></script>
 </body>
 </html>

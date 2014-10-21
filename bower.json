@@ -1,6 +1,6 @@
 {
-  "name": "sape",
-  "version": "0.0.0",
+  "name": "site",
+  "version": "0.0.1",
   "devDependencies": {
       "bazalt": "*",
       "bootstrap": "~3.0.0",
