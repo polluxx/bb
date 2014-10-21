@@ -109,7 +109,11 @@ define([
 				reader.onload = (function (tFile) {
 					return function (evt) {
 						var div = document.createElement('div');
-						div.innerHTML = '<img style="width: 90px;" src="' + evt.target.result + '" />';
+                        var num = 30;
+                        if (scope.file.size > 5000) {
+                            num = 90;
+                        }
+						div.innerHTML = '<img style="width: '+num+'px;" src="' + evt.target.result + '" />';
 						element[0].appendChild(div);
 					};
 				}(scope.file));
