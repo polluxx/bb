@@ -66,17 +66,28 @@ define([
 			for (var i in $scope.files2Upload) {
 				fd.append("uploadedFile", $scope.files2Upload[i])
 			}
-			
-				var reader = new FileReader();
-				reader.onload = (function (tFile) {
-					return function (evt) {
-						var div = document.createElement('div');
-                        var num = 900;
-						div.innerHTML = '<img style="width: '+num+'px;" src="' + evt.target.result + '" />';
-						document.getElementById("mainImage").appendChild(div);
-					};
-				}($scope.files2Upload[0]));
-				reader.readAsDataURL($scope.files2Upload[0]);
+
+            $scope.uploadback = function() {
+                var main = document.getElementById("mainImage");
+                main.innerHTML = "";
+                var reader = new FileReader();
+                reader.onload = (function (tFile) {
+                    return function (evt) {
+                        var div = document.createElement('div');
+                        var num = 100;
+                        if ($scope.files2Upload[0].size > 100000) {
+                            num = 1200;
+                        }
+                        div.innerHTML = '<img style="width: '+num+'px;" src="' + evt.target.result + '" />';
+                        main.appendChild(div);
+                    };
+                }($scope.files2Upload[0]));
+                reader.readAsDataURL($scope.files2Upload[0]);
+            }
+
+            if (block.type == 4) {
+                $scope.uploadback();
+            }
 			
 			console.log(fd);
 			console.log($scope.files2Upload);

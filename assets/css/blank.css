@@ -27,7 +27,7 @@
 
 .admin-block {
     background: #fff;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     width: 0;
@@ -41,7 +41,7 @@
 }
 
 .admin-block.passive:hover {
-    opacity: 0.3;
+    opacity: 0.5;
     width: 70px;
     cursor: pointer;
 }
@@ -52,9 +52,13 @@
 }
 
 .main.disabled {
-    opacity: 0.8;
+    opacity: 0.3;
     filter: alpha(opacity=80);
     visibility: visible;
+    transition: opacity 0.3s ease-in-out;
+}
+.main{
+    opacity: 1;
     transition: opacity 0.3s ease-in-out;
 }
 
