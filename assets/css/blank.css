@@ -60,6 +60,7 @@
 .main{
     opacity: 1;
     transition: opacity 0.3s ease-in-out;
+    min-height: 800px;
 }
 
 .in-block {

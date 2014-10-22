@@ -14,9 +14,21 @@ define(['base/home/module'], function (module) {
                     mapped.addClass("disabled");
                 })
 				
-                element.on("mouseleave", function() {
+                element.on("blur", function() {
 					element.addClass("passive");
                     mapped.removeClass("disabled");
+                })
+            }
+        }
+    }).directive("mainContainer", function() {
+        return {
+            restrict:"A",
+            link: function(scope, element, attrs) {
+                var mapped = angular.element(document.getElementById("admBl"));
+
+                element.on("click", function() {
+                    mapped.addClass("passive");
+                    element.removeClass("disabled");
                 })
             }
         }
