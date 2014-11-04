@@ -144,7 +144,8 @@ define([
                         if (scope.file.size > 5000) {
                             num = 90;
                         }
-						div.innerHTML = '<img style="width: '+num+'px;" src="' + evt.target.result + '" />';
+						div.innerHTML = '<img style="width: '+num+'px;" draggable src="' + evt.target.result + '" />';
+						
 						element[0].appendChild(div);
 					};
 				}(scope.file));

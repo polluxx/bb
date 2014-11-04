@@ -84,3 +84,55 @@ input.uploaded {
     display: block;
     text-align: center;
 }
+
+add-floor {
+	font-size:32px;
+	opacity:0.2;
+	cursor:pointer;
+	padding: 10px;
+}
+add-floor:hover {
+	opacity:1;
+}
+
+.search {
+	margin-top: 20px;
+	position: relative;
+}
+.search-icon {
+	position:absolute;
+	right:1px;
+	top:2px;
+	padding:11px;
+	overflow:hidden;
+	background: #fff;
+}
+
+.nobtn-default.ng-hide {
+	visibility:hidden;
+}
+
+.nobtn-default {
+	font-size: 20px;
+	padding: 10px;
+	cursor: pointer;
+	opacity: 0.4;
+	visibility: visible;
+	transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+.nobtn-default:hover {
+	opacity: 1;
+}
+
+.ok {
+	color:#247C22;
+}
+.plus {
+	font-size:32px;
+}
+
+.dropable {
+	border: 1px dotted #ccc;
+	padding: 25px;
+	border-style: dashed;
+}

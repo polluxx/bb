@@ -6,6 +6,7 @@ define([
     'base/config',
     //'modules/auth/config',
     'modules/add/config',
+    'modules/search/config',
 
     'views'
 ], function (angular) {
@@ -18,6 +19,7 @@ define([
 
         //'module.auth',
         'module.add',
+        'module.search',
 
         'views'
     ]);

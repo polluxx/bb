@@ -15,6 +15,9 @@
 <div class="container">
 
     <div class="row">
+		<floors></floors>
+		
+		<drop></drop>		
         <div class="col main" id="mapped" main-container>
             <div app-view-segment="0">
 
@@ -23,6 +26,13 @@
 
         <div class="col col-lg-4 ng-cloak admin-block passive" id="admBl" admin-block>
             <div class="in-block">
+				<div class="form-group search" ng-controller="SearchGoCtrl">
+                    <input placeholder="Search" id="search" class="form-control input" type="text" ng-model="phrase"/>
+					<span class="search-icon glyphicon glyphicon-search"></span>
+                </div>
+ 			
+			
+			
 			<h3>Item</h3>
 			<form ng-controller="AddItemCtrl" ng-submit="add(item)">
                 <div class="form-group">
@@ -36,8 +46,22 @@
                 </div>
             </form>
 			
+			
+			
 			<br/>
-			<h3>Type</h3>
+			<h3>Group</h3>
+			<form ng-controller="AddGroupCtrl" ng-submit="add(group)" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input placeholder="Type" messag="true" id="typeG" name="type" class="form-control input" type="text" ng-model="group.type"/>
+                </div>
+                <div class="form-group ">
+                    <input placeholder="Name" messag="true" id="nameG" name="name" class="form-control input" type="text" ng-model="group.name"/>
+                </div>
+				<span class="glyphicon glyphicon-ok ok nobtn-default" ng-show="group.name && group.type"></span>
+			</form>
+			
+			<br/>
+			<h3>Element</h3>
 			<form ng-controller="AddBlockCtrl" ng-submit="add(block)" enctype="multipart/form-data">
                 <div class="form-group">
                     <!--label for="typeB">Type:</label-->
@@ -60,7 +84,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button class="btn btn-default input" type="submit">Add</button>
+                    <button graggable class="btn btn-default input" type="submit">Add</button>
                 </div>
             </form>
         </div>
