@@ -1,0 +1,45 @@
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<polymer-element name="app-layer">
+	<template>
+		<div class="col main" on-click="{{selectMain}}"></div>
+	</template>
+	<script>
+	Polymer({
+		ready: function() {
+		//console.info(this.settings)
+		},
+		created: function() {
+			// create a default settings object for this instance
+			this.settings = {
+				isAdmin: false
+			};
+			this.searched = false;
+		},
+		selectMain: function() {
+			this.searched = false;
+			console.log("sdsdf");
+		}
+    });
+	</script>
+	<style>
+		html,body {
+		  height: 100%;
+		  margin: 0;
+		  background-color: #E5E5E5;
+		  font-family: 'RobotoDraft', sans-serif;
+		}
+		core-header-panel {
+		  height: 100%;
+		  overflow: auto;
+		  -webkit-overflow-scrolling: touch; 
+		}
+		core-toolbar {
+		  background: #03a9f4;
+		  color: white;
+		}
+		:host .main {
+			min-height:300px;
+		}
+	</style>
+</polymer-element>

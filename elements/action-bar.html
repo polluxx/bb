@@ -1,0 +1,69 @@
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="app-layer.html">
+<link href="../bower_components/core-icons/core-icons.html" rel="import">
+<link href="../bower_components/paper-fab/paper-fab.html" rel="import">
+<link href="../bower_components/paper-input/paper-input-decorator.html" rel="import">
+  
+<polymer-element name="action-bar" extends="app-layer">
+	<template>
+		<div class="col col-lg-4 admin-block passive">
+			<paper-fab hidden?="{{searched != false}}" on-click="{{tapped}}" icon="{{operation}}" class="green" title="search"></paper-fab>
+			<div hidden?="{{searched == false}}" horizontal end-justified layout>
+				<div class="action-bar">
+				<paper-input-decorator label="пошук" floatingLabel>
+				  <input id="searchLine" is="core-input">
+				</paper-input-decorator>
+				</div>
+			</div>
+		</div>
+		
+		<style>
+		
+		:host paper-fab {
+			position: fixed;
+			right: 60px;
+			top:70px;
+		}
+		
+		:host .action-bar {
+			padding:20px 30px;
+			background: #fff;
+			height: 100%;
+		}
+		.green {
+			background:#39C32F;
+		}
+		</style>
+	</template>
+	<script>
+	Polymer({
+		ready: function() {
+			console.info(this.settings)
+			this.operation = "search";
+			if (this.settings.isAdmin) {
+				this.operation = "create";
+			}
+			
+			self = this;
+			window.addEventListener("keypress", function(e) {
+				//e.preventDefault();
+				if (!self.searched) {
+					self.searched = true;
+				}
+				
+				self.$.searchLine.focus();
+				if (self.$.searchLine.value.length == 0) {
+					self.$.searchLine.value = String.fromCharCode(e.keyCode);
+				}
+				
+			})
+		},
+		tapped: function() {
+			this.searched = true;
+		}
+    });
+	</script>
+
+</polymer-element>
