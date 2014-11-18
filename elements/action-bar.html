@@ -1,22 +1,33 @@
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<link rel="import" href="app-layer.html">
 <link href="../bower_components/core-icons/core-icons.html" rel="import">
 <link href="../bower_components/paper-fab/paper-fab.html" rel="import">
 <link href="../bower_components/paper-input/paper-input-decorator.html" rel="import">
-  
+<link href="../bower_components/paper-shadow/paper-shadow.html" rel="import">
+
+<link rel="import" href="app-layer.html">
+<link rel="import" href="action-block.html">
+
 <polymer-element name="action-bar" extends="app-layer">
 	<template>
 		<div class="col col-lg-4 admin-block passive">
-			<paper-fab hidden?="{{searched != false}}" on-click="{{tapped}}" icon="{{operation}}" class="green" title="search"></paper-fab>
-			<div hidden?="{{searched == false}}" horizontal end-justified layout>
+            <paper-shadow z="4">
+                <paper-fab hidden?="{{searched != false}}" on-click="{{tapped}}" icon="{{operation}}" class="green" title="search"></paper-fab>
+            </paper-shadow>
+            <paper-shadow z="4">
+            <div hidden?="{{searched == false}}" vertical layout style="height:100vh">
 				<div class="action-bar">
-				<paper-input-decorator label="пошук" floatingLabel>
-				  <input id="searchLine" is="core-input">
-				</paper-input-decorator>
+                    <paper-input-decorator label="пошук" floatingLabel>
+                      <input id="searchLine" is="core-input">
+                    </paper-input-decorator>
+
+                    <action-block></action-block>
 				</div>
+
+
 			</div>
+            </paper-shadow>
 		</div>
 		
 		<style>
@@ -32,6 +43,11 @@
 			background: #fff;
 			height: 100%;
 		}
+
+        :host .admin-block {
+            width:20%;
+        }
+
 		.green {
 			background:#39C32F;
 		}

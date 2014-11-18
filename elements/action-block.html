@@ -1,0 +1,66 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link href="../bower_components/core-menu/core-menu.html" rel="import">
+<link href="../bower_components/paper-dropdown/paper-dropdown.html" rel="import">
+<link href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html" rel="import">
+<link href="../bower_components/paper-item/paper-item.html" rel="import">
+
+
+<link rel="import" href="app-layer.html">
+
+<polymer-element name="action-block" extends="app-layer">
+    <template>
+        <paper-dropdown-menu label="Оберіть тип">
+            <paper-dropdown class="dropdown">
+
+                <core-menu class="menu">
+                    <template repeat="{{types}}">
+                        <paper-item>{{}}</paper-item>
+                    </template>
+                </core-menu>
+
+            </paper-dropdown>
+        </paper-dropdown-menu>
+
+        <style>
+            :host /deep/ core-menu,
+
+            :host /deep/ paper-dropdown-menu{
+                width: 100%;
+            }
+
+            :host /deep/ paper-dropdown {
+                width: 200px;
+            }
+            :host /deep/ paper-shadow {
+                display: inline-block;
+            }
+
+            paper-item {
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                width: 180px;
+            }
+            paper-item.colored {
+                color: #0f9d58;
+            }
+
+            :host /deep/ #label, :host /deep/ #arrow {
+                color: #59B668;
+            }
+
+        </style>
+    </template>
+    <script>
+        Polymer({
+            ready: function() {
+                //scope = document.querySelector('template[is=auto-binding]');
+                this.types = [
+                    'активний',
+                    'пасивний'
+                ];
+            }
+        });
+    </script>
+</polymer-element>
