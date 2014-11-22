@@ -4,29 +4,63 @@
 <link href="../bower_components/paper-dropdown/paper-dropdown.html" rel="import">
 <link href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html" rel="import">
 <link href="../bower_components/paper-item/paper-item.html" rel="import">
+<link href="../bower_components/paper-button/paper-button.html" rel="import">
 
 
-<link rel="import" href="app-layer.html">
+<!--link rel="import" href="app-layer.html"-->
 
-<polymer-element name="action-block" extends="app-layer">
-    <template>
+<polymer-element name="action-block" attributes="settings">
+    <template if="{{settings.isAdmin == true}}">
+        <!--shadow></shadow-->
+        <div>
         <paper-dropdown-menu label="Оберіть тип">
             <paper-dropdown class="dropdown">
-
                 <core-menu class="menu">
                     <template repeat="{{types}}">
                         <paper-item>{{}}</paper-item>
                     </template>
                 </core-menu>
-
             </paper-dropdown>
         </paper-dropdown-menu>
+        </div>
+        <div>
+        <paper-dropdown-menu label="Оберіть групу">
+            <paper-dropdown class="dropdown">
+                <core-menu class="menu">
+                    <template repeat="{{groups}}">
+                        <paper-item>{{}}</paper-item>
+                    </template>
+                </core-menu>
+            </paper-dropdown>
+        </paper-dropdown-menu>
+        </div>
+
+        <div>
+            <paper-input-decorator label="назва" floatingLabel>
+                <input id="itemName" is="core-input" value="{{itemName}}">
+            </paper-input-decorator>
+        </div>
+
+        <div>
+            <div class="form-group ">
+                <paper-button>
+                    <!--label for="files">Images:</label-->
+                    <input placeholder="Images" messag="true" id="files" class="form-control input" type="file" multiple="multiple" name="files[]" file-input="files"/>
+                </paper-button>
+            </div>
+
+            <div class="form-group " ng-show="files">
+                <!--label for="states">States:</label-->
+                <div ng-repeat="file in files" ng-if="!file.error" class="box" style="padding: 10px 0;">
+                    <preloading class="preloaded" data='file'></preloading>
+                </div>
+            </div>
+        </div>
 
         <style>
-            :host /deep/ core-menu,
-
             :host /deep/ paper-dropdown-menu{
                 width: 100%;
+                height: 100%;
             }
 
             :host /deep/ paper-dropdown {
@@ -34,6 +68,15 @@
             }
             :host /deep/ paper-shadow {
                 display: inline-block;
+            }
+
+            :host /deep/ .core-selected {
+                background-color: #90D5A6;
+            }
+
+
+            :host /deep/ pressed {
+                background-color: #90D5A6;
             }
 
             paper-item {
@@ -47,7 +90,12 @@
             }
 
             :host /deep/ #label, :host /deep/ #arrow {
-                color: #59B668;
+                color: #90D5A6;
+            }
+
+            :host {
+                position: relative;
+
             }
 
         </style>
@@ -55,11 +103,20 @@
     <script>
         Polymer({
             ready: function() {
+
+
                 //scope = document.querySelector('template[is=auto-binding]');
                 this.types = [
                     'активний',
                     'пасивний'
                 ];
+
+                this.groups = [
+                    'юзери',
+                    'програмери',
+                    'колл-центр'
+                ];
+
             }
         });
     </script>

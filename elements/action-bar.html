@@ -6,25 +6,26 @@
 <link href="../bower_components/paper-input/paper-input-decorator.html" rel="import">
 <link href="../bower_components/paper-shadow/paper-shadow.html" rel="import">
 
-<link rel="import" href="app-globals.html">
-<link rel="import" href="app-layer.html">
+<!--link rel="import" href="app-globals.html"-->
+<!--link rel="import" href="app-layer.html"-->
 <link rel="import" href="action-block.html">
 
-<polymer-element name="action-bar" extends="app-layer">
+<polymer-element name="action-bar" attributes="globals">
 	<template>
-		<app-globals id="globals"></app-globals>
+
+		<!--app-globals id="globals"></app-globals-->
 		<div class="col col-lg-4 admin-block passive">
             <paper-shadow z="4">
-                <paper-fab hidden?="{{searched != false}}" on-click="{{tapped}}" icon="{{operation}}" class="green" title="search"></paper-fab>
+                <paper-fab hidden?="{{settings.searched != false}}" on-click="{{tapped}}" icon="{{operation}}" class="green" title="search"></paper-fab>
             </paper-shadow>
             <paper-shadow z="4">
-            <div hidden?="{{searched == false}}" vertical layout style="height:100vh">
+            <div hidden?="{{settings.searched == false}}" vertical layout style="height:100vh">
 				<div class="action-bar">
                     <paper-input-decorator label="пошук" floatingLabel>
-                      <input id="searchLine" is="core-input">
+                      <input id="searchLine" is="core-input" value="{{settings.searchText}}">
                     </paper-input-decorator>
 
-                    <action-block></action-block>
+                    <action-block settings="{{globals}}"></action-block>
 				</div>
 
 
@@ -59,14 +60,18 @@
 		.green {
 			background:#39C32F;
 		}
+
+        :host paper-item .core-selected {
+            background-color: #A7FCC2;
+        }
 		</style>
 	</template>
 	<script>
 	Polymer({
+        //settings: this.getSettings,
 		ready: function() {
-			this.settings = this.$.globals.settings;
-			this.searched = this.$.globals.searched;
-			console.info(this.settings)
+            this.settings = this.globals || {};
+
 			this.operation = "search";
 			if (this.settings.isAdmin) {
 				this.operation = "create";
@@ -75,20 +80,31 @@
 			self = this;
 			window.addEventListener("keypress", function(e) {
 				//e.preventDefault();
-				if (!self.$.globals.searched) {
+                if (document.activeElement.tagName == "APP-GLOBALS") return;
+
+
+				if (!self.settings.searched) {
 					self.tapped();
 				}
 				
 				self.$.searchLine.focus();
 				if (self.$.searchLine.value.length == 0) {
 					self.$.searchLine.value = String.fromCharCode(e.keyCode);
+                    //self.settings.searchText = self.$.searchLine.value;
 				}
 				
 			})
 		},
 		tapped: function() {
-			this.searched = true;
-		}
+			this.settings.searched = true;
+
+		}/*,
+        observe: function() {
+            settings: 'validate'
+        },
+        validate: function(oldValue, newValue) {
+            console.log(newValue);
+        }*/
     });
 	</script>
 

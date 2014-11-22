@@ -1,8 +1,24 @@
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="app-layer.html">
+<link rel="import" href="action-bar.html">
+
 <polymer-element name="app-globals">
 	<template>
-		<div></div>
+        <app-layer globals="{{settings}}"></app-layer>
+
+        <action-bar globals="{{settings}}"></action-bar>
+
+        <!--style>
+            :host /deep/ .input {
+                font-family: caecilia, times, serif;
+                font-size: 16px;
+                -webkit-font-smoothing: antialiased;
+                /*border: none;
+                //box-shadow: none;*/
+                border-radius: 0;
+            }
+        </style-->
 	</template>
 	<script>
 	Polymer({
@@ -12,13 +28,19 @@
 		created: function() {
 			// create a default settings object for this instance
 			this.settings = {
-				isAdmin: false
+				isAdmin: false,
+                searched: false,
+                searchText: ""
 			};
 			this.searched = false;
 		},
 		selectMain: function(tick) {
-			this.searched = tick;
-			console.log("sdsdf2");
+
+
+			this.settings.searched = this.searched = false;
+
+
+			console.log(this.settings);
 		}
     });
 	</script>

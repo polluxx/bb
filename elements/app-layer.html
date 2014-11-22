@@ -1,10 +1,9 @@
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="app-globals.html">
 
-<polymer-element name="app-layer">
+<polymer-element name="app-layer" attributes="globals">
 	<template>
-		<app-globals id="globals"></app-globals>
+		<!--app-globals id="globals"></app-globals-->
 		<div class="col main" on-click="{{selectMain}}"></div>
 		<style>
 			core-header-panel {
@@ -23,12 +22,13 @@
 	</template>
 	<script>
 	Polymer({
-		ready: function() {
-		//console.info(this.settings)
-		},
-		selectMain: function() {
-			this.$.globals.selectMain(false);
-		}
+        ready: function() {
+
+        },
+        selectMain: function() {
+            this.globals.searched = false;
+            //this.globals.searchText = "";
+        }
     });
 	</script>
 	<style>

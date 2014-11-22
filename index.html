@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="bower_components/webcomponentsjs/webcomponents.js"></script>
 	<link rel="import" href="elements/my-element.html">
-	<link rel="import" href="elements/app-layer.html">
-	<link rel="import" href="elements/action-bar.html">
+	<!--link rel="import" href="elements/app-layer.html">
+	<link rel="import" href="elements/action-bar.html"-->
 	
 	<link rel="import" href="bower_components/font-roboto/roboto.html">
+
+    <link rel="import" href="elements/app-globals.html">
 		  
 </head>
 <body unresolved>
@@ -17,14 +19,15 @@
 
     <div class="row">
 
-	<app-layer></app-layer>
+    <app-globals></app-globals>
+
+
     <!--core-ajax url="/bower.json"
                handleAs="json"></core-ajax-->
 			   
    <!--my-element></my-element-->
 			   
-			   
-	<action-bar></action-bar>
+
     <!--script>
       // Wait for 'polymer-ready'. Ensures the element is upgraded.
       window.addEventListener('polymer-ready', function(e) {
