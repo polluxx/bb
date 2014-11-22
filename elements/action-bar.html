@@ -6,11 +6,13 @@
 <link href="../bower_components/paper-input/paper-input-decorator.html" rel="import">
 <link href="../bower_components/paper-shadow/paper-shadow.html" rel="import">
 
+<link rel="import" href="app-globals.html">
 <link rel="import" href="app-layer.html">
 <link rel="import" href="action-block.html">
 
 <polymer-element name="action-bar" extends="app-layer">
 	<template>
+		<app-globals id="globals"></app-globals>
 		<div class="col col-lg-4 admin-block passive">
             <paper-shadow z="4">
                 <paper-fab hidden?="{{searched != false}}" on-click="{{tapped}}" icon="{{operation}}" class="green" title="search"></paper-fab>
@@ -32,6 +34,12 @@
 		
 		<style>
 		
+		:host {
+			position: absolute;
+			top:0px;
+			right:0px;
+		}
+		
 		:host paper-fab {
 			position: fixed;
 			right: 60px;
@@ -45,7 +53,7 @@
 		}
 
         :host .admin-block {
-            width:20%;
+            width:100%;
         }
 
 		.green {
@@ -56,6 +64,8 @@
 	<script>
 	Polymer({
 		ready: function() {
+			this.settings = this.$.globals.settings;
+			this.searched = this.$.globals.searched;
 			console.info(this.settings)
 			this.operation = "search";
 			if (this.settings.isAdmin) {
@@ -65,8 +75,8 @@
 			self = this;
 			window.addEventListener("keypress", function(e) {
 				//e.preventDefault();
-				if (!self.searched) {
-					self.searched = true;
+				if (!self.$.globals.searched) {
+					self.tapped();
 				}
 				
 				self.$.searchLine.focus();

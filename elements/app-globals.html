@@ -1,0 +1,25 @@
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<polymer-element name="app-globals">
+	<template>
+		<div></div>
+	</template>
+	<script>
+	Polymer({
+		ready: function() {
+		//console.info(this.settings)
+		},
+		created: function() {
+			// create a default settings object for this instance
+			this.settings = {
+				isAdmin: false
+			};
+			this.searched = false;
+		},
+		selectMain: function(tick) {
+			this.searched = tick;
+			console.log("sdsdf2");
+		}
+    });
+	</script>
+</polymer-element>

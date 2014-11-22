@@ -1,46 +1,42 @@
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="app-globals.html">
+
 <polymer-element name="app-layer">
 	<template>
+		<app-globals id="globals"></app-globals>
 		<div class="col main" on-click="{{selectMain}}"></div>
+		<style>
+			core-header-panel {
+			  height: 100%;
+			  overflow: auto;
+			  -webkit-overflow-scrolling: touch; 
+			}
+			core-toolbar {
+			  background: #03a9f4;
+			  color: white;
+			}
+			:host .main {
+				height: 100vh;
+			}
+		</style>
 	</template>
 	<script>
 	Polymer({
 		ready: function() {
 		//console.info(this.settings)
 		},
-		created: function() {
-			// create a default settings object for this instance
-			this.settings = {
-				isAdmin: false
-			};
-			this.searched = false;
-		},
 		selectMain: function() {
-			this.searched = false;
-			console.log("sdsdf");
+			this.$.globals.selectMain(false);
 		}
     });
 	</script>
 	<style>
 		html,body {
-            height: 100%;
-            margin: 0;
-            background-color: #E5E5E5;
-            font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
-		}
-
-		core-header-panel {
-		  height: 100%;
-		  overflow: auto;
-		  -webkit-overflow-scrolling: touch; 
-		}
-		core-toolbar {
-		  background: #03a9f4;
-		  color: white;
-		}
-		:host .main {
-			min-height:300px;
+			height: 100%;
+			margin: 0;
+			background-color: #E5E5E5;
+			font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
 		}
 	</style>
 </polymer-element>
